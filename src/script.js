@@ -2,10 +2,7 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'lil-gui'
 
-/**
- * Base
- */
-// Debug
+//gui
 const gui = new dat.GUI()
 
 // Canvas
@@ -14,24 +11,13 @@ const canvas = document.querySelector('canvas.webgl')
 // Scene
 const scene = new THREE.Scene()
 
-/**
- * Textures
- */
-const textureLoader = new THREE.TextureLoader()
+// Textures
 
-/**
- * Test cube
- */
-// const cube = new THREE.Mesh(
-//     new THREE.BoxGeometry(1, 1, 1),
-//     new THREE.MeshBasicMaterial()
-// )
-// scene.add(cube)
+const textureLoader = new THREE.TextureLoader()
 
 /**
  * Particles
  */
-// Geometry
 // Geometry
 const particlesGeometry = new THREE.BufferGeometry()
 const count = 20000
@@ -47,11 +33,7 @@ for(let i = 0; i < count * 3; i++)
 
 particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
 particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3))
-// Material
-// const particlesMaterial = new THREE.PointsMaterial({
-//     size: 0.02,
-//     sizeAttenuation: true
-// })
+
 const particlesMaterial = new THREE.PointsMaterial()
 particlesMaterial.size = 0.1
 particlesMaterial.sizeAttenuation = true
@@ -68,19 +50,10 @@ const particleTexture = textureLoader.load('/textures/particles/5.png')
 // ...
 particlesMaterial.color = new THREE.Color('#ff88cc')
 particlesMaterial.map = particleTexture
-// particlesMaterial.map = particleTexture
 particlesMaterial.transparent = true
 particlesMaterial.alphaMap = particleTexture
-// particlesMaterial.alphaTest = 0.001
-// particlesMaterial.depthTest = false
 particlesMaterial.depthWrite = false
 particlesMaterial.blending = THREE.AdditiveBlending
-
-// const cube = new THREE.Mesh(
-//     new THREE.BoxGeometry(),
-//     new THREE.MeshBasicMaterial()
-// )
-// scene.add(cube)
 
 /**
  * Sizes
